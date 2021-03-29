@@ -1,3 +1,4 @@
+// Deleted everthing in the react-practice-testing/src and /public (except for index)
 import React from 'react';
 import ReactDOM from 'react-dom';
 
