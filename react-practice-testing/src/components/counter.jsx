@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
     // Any data a component needs
     state = {
-        count: 0,
+        value: this.props.value,
         tags: []
         // imgUrl: "https://picsum.photos/200"
     };
@@ -16,7 +16,7 @@ class Counter extends Component {
 
     handleIncrement = () => {
         this.setState({
-            count: this.state.count + 1
+            value: this.state.value + 1
         });
     }
 
@@ -30,6 +30,7 @@ class Counter extends Component {
     }
 
     render() {
+        console.log(this.props);
 
         let myStyle = {
             fontWeight: 'bold',
@@ -37,25 +38,27 @@ class Counter extends Component {
             backgroundColor: 'lightBlue'
         }
 
-        if(this.state.count === 0) {
+        if(this.state.value === 0) {
             myStyle.backgroundColor = "yellow";
         }
 
         return (
             <div>
                 {/* <img src={this.state.imgUrl} alt="Random Photo"/> */}
+                {this.props.children}
                 <span style={ myStyle }>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement} >Increment</button>
+                <button onClick={ () => this.handleIncrement() } >Increment</button>
                 { this.state.tags.length === 0 && "Please create a new tag!" }
                 {this.renderTags()}
             </div>
         );
     }
+
     formatCount() {
         // This is called destucturing... It puts count as a variable for this.state
         // It would look like this const count = this.state.count;
         // It for easier use!
-        const { count } = this.state
+        const { value: count } = this.state
         return count === 0 ? "Zero" : count;
     }
 }
