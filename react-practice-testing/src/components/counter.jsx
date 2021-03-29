@@ -8,13 +8,17 @@ class Counter extends Component {
     render() {
         return (
             <div>
-                <span>{this.state.count}</span>
+                <span>{this.formatCount()}</span>
                 <button>Increment</button>
             </div>
         );
     }
     formatCount() {
-        return this.state.count === 0 ? "Zero" : this.state.count;
+        // This is called destucturing... It puts count as a variable for this.state
+        // It would look like this const count = this.state.count;
+        // It for easier use!
+        const { count } = this.state
+        return count === 0 ? <h1>Zero</h1> : count;
     }
 }
 
