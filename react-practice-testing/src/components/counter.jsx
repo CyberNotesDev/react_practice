@@ -4,14 +4,29 @@ class Counter extends Component {
     // Any data a component needs
     state = {
         count: 0,
+        tags: ['tag1', 'tag2', 'tag3']
         // imgUrl: "https://picsum.photos/200"
     };
     render() {
+
+        let myStyle = {
+            fontWeight: 'bold',
+            fontSize: 50,
+            backgroundColor: 'lightBlue'
+        }
+
+        if(this.state.count === 0) {
+            myStyle.backgroundColor = "yellow";
+        }
+
         return (
             <div>
                 {/* <img src={this.state.imgUrl} alt="Random Photo"/> */}
-                <span>{this.formatCount()}</span>
+                <span style={ myStyle }>{this.formatCount()}</span>
                 <button>Increment</button>
+                <ul>
+                    { this.state.tags.map(tag => <li>{ tag }</li>) }
+                </ul>
             </div>
         );
     }
