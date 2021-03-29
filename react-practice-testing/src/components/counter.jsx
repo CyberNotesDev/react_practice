@@ -25,6 +25,7 @@ class Counter extends Component {
                 <span style={ myStyle }>{this.formatCount()}</span>
                 <button>Increment</button>
                 <ul>
+                    {/* If I don't add a key then the conosle will bitch at me */}
                     { this.state.tags.map(tag => <li key={tag}>{ tag }</li>) }
                 </ul>
             </div>
