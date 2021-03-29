@@ -4,9 +4,31 @@ class Counter extends Component {
     // Any data a component needs
     state = {
         count: 0,
-        tags: ['tag1', 'tag2', 'tag3']
+        tags: []
         // imgUrl: "https://picsum.photos/200"
     };
+
+    // we only use constructor if we wanna do handleIncrement() {};
+    // constructor() {
+    //     super();
+    //     this.handleIncrement = this.handleIncrement.bind(this);
+    // }
+
+    handleIncrement = () => {
+        this.setState({
+            count: this.state.count + 1
+        });
+    }
+
+    renderTags() {
+        if(this.state.tags.length === 0) return "There are no tags";
+
+        return <ul>
+        {/* If I don't add a key then the conosle will bitch at me */}
+        { this.state.tags.map(tag => <li key={tag}>{ tag }</li>) }
+        </ul>;
+    }
+
     render() {
 
         let myStyle = {
@@ -23,11 +45,9 @@ class Counter extends Component {
             <div>
                 {/* <img src={this.state.imgUrl} alt="Random Photo"/> */}
                 <span style={ myStyle }>{this.formatCount()}</span>
-                <button>Increment</button>
-                <ul>
-                    {/* If I don't add a key then the conosle will bitch at me */}
-                    { this.state.tags.map(tag => <li key={tag}>{ tag }</li>) }
-                </ul>
+                <button onClick={this.handleIncrement} >Increment</button>
+                { this.state.tags.length === 0 && "Please create a new tag!" }
+                {this.renderTags()}
             </div>
         );
     }
